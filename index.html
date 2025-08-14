@@ -287,3 +287,139 @@
 
 </body>
 </html>
+<script>
+  const ZAR = (n)=>'R'+Number(n).toLocaleString('en-ZA');
+
+  function normalizeData(raw){
+    if (raw && !Array.isArray(raw) && raw.products && Array.isArray(raw.products)) return raw;
+    if (Array.isArray(raw)) {
+      const products = raw.map((item, i) => {
+        const affiliate = {};
+        if (item.links && typeof item.links === 'object') {
+          for (const k of Object.keys(item.links)) {
+            affiliate[k.toLowerCase().replace(/\s+/g,'')] = item.links[k] || '#';
+          }
+        }
+        const basePrice = parseInt(String(item.price||'').replace(/[^\d]/g,''), 10) || 0;
+        const storeKeys = ['amazon','takealot','ebay','aliexpress','temu'];
+        const storePrices = {};
+        storeKeys.forEach(k=>{ storePrices[k] = affiliate[k] ? basePrice : 0; });
+
+        return {
+          id: i+1,
+          name: item.name || `Item ${i+1}`,
+          category: (item.category || 'other').toLowerCase(),
+          spec: item.spec || '',
+          rating: item.rating || 4,
+          img: item.image || item.img || `https://picsum.photos/seed/${i}/600/400`,
+          storePrices,
+          affiliate
+        };
+      });
+      const categories = Array.from(new Set(products.map(p=>p.category))).map(c=> c.charAt(0).toUpperCase()+c.slice(1));
+      return { featuredCount: Math.min(8, products.length), categories, products };
+    }
+    return { featuredCount: 0, categories: [], products: [] };
+  }
+
+  function bestStore(storePrices){
+    const entries = Object.entries(storePrices||{}).filter(([_,p])=>p && p>0);
+    if(!entries.length) return null;
+    return entries.reduce((a,b)=> a[1] <= b[1] ? a : b);
+  }
+  function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
+
+  async function loadData(){
+    try{
+      const res = await fetch('products.json', {cache:'no-store'});
+      if(!res.ok) throw new Error('Failed to load products.json');
+      const raw = await res.json();
+      const data = normalizeData(raw);
+      initSite(data);
+    }catch(e){
+      document.getElementById('grid').innerHTML =
+        `<div class="panel" style="grid-column:1/-1">⚠️ Could not load products.json. Error: ${e.message}</div>`;
+    }
+  }
+
+  function initSite({categories, products, featuredCount=8}){
+    const catRow = document.getElementById('catRow');
+    catRow.innerHTML = '';
+    (categories||[]).forEach(c=>{
+      const el = document.createElement('div');
+      el.className='cat';
+      el.dataset.category = c.toLowerCase();
+      el.textContent = c;
+      el.onclick = ()=> filterCategory(c.toLowerCase());
+      catRow.appendChild(el);
+    });
+
+    const carousel = document.getElementById('carousel');
+    carousel.innerHTML = '';
+    (products||[]).slice(0,featuredCount).forEach(p=>{
+      const b = bestStore(p.storePrices||{});
+      const box = document.createElement('div');
+      box.className='deal';
+      box.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <div class="price">${b? `${ZAR(b[1])} <span class="badge">Best price</span>` : 'See stores'}</div>
+        <button class="buy" onclick="scrollToGrid('${p.name}')">Compare Prices</button>
+      `;
+      carousel.appendChild(box);
+    });
+
+    const grid = document.getElementById('grid');
+    function render(list){
+      grid.innerHTML='';
+      list.forEach(p=>{
+        const best = bestStore(p.storePrices||{});
+        const storesHtml = Object.entries(p.storePrices||{}).map(([store,price])=>{
+          if(!price) return '';
+          const url = p.affiliate?.[store] || '#';
+          const label = store.charAt(0).toUpperCase()+store.slice(1);
+          return `<a class="store-btn" href="${url}" target="_blank" rel="noopener">
+                    <span>${label}</span><strong>${ZAR(price)}</strong>
+                  </a>`;
+        }).join('');
+
+        const card = document.createElement('div');
+        card.className='card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h4>${p.name}</h4>
+          <div class="spec">${p.spec||''}</div>
+          <div class="stars">${stars(p.rating||4)}</div>
+          <div class="priceRow">
+            ${best ? `<span class="badge">Best price: ${ZAR(best[1])}</span>` : `<span class="badge" style="opacity:.75">Compare stores</span>`}
+          </div>
+          <div class="stores">${storesHtml}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    const search = document.getElementById('search');
+    search.oninput = ()=>{
+      const q = search.value.toLowerCase();
+      const list = (products||[]).filter(p => p.name.toLowerCase().includes(q) || (p.category||'').includes(q));
+      render(list);
+    };
+
+    window.filterCategory = (cat)=>{
+      const list = (products||[]).filter(p=>p.category===cat);
+      render(list.length ? list : (products||[]));
+      window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
+    };
+
+    window.scrollToGrid = (name)=>{
+      window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
+      const list = (products||[]).filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
+      render(list.length? list : (products||[]));
+    };
+
+    render(products||[]);
+  }
+
+  loadData();
+</script>
