@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Apple iPhone 15 Pro",
+    "image": "https://via.placeholder.com/300x200",
+    "price": "$999",
+    "links": {
+      "Amazon": "https://example.com/iphone15-amazon",
+      "Temu": "https://example.com/iphone15-temu",
+      "Takealot": "https://example.com/iphone15-takealot",
+      "eBay": "https://example.com/iphone15-ebay",
+      "AliExpress": "https://example.com/iphone15-aliexpress"
+    }
+  },
+  {
+    "name": "Sony WH-1000XM5 Headphones",
+    "image": "https://via.placeholder.com/300x200",
+    "price": "$399",
+    "links": {
+      "Amazon": "https://example.com/sonyheadphones-amazon",
+      "Temu": "https://example.com/sonyheadphones-temu",
+      "Takealot": "https://example.com/sonyheadphones-takealot",
+      "eBay": "https://example.com/sonyheadphones-ebay",
+      "AliExpress": "https://example.com/sonyheadphones-aliexpress"
+    }
+  }
+]
