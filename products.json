@@ -1,63 +1,24 @@
 [
-  {
-    "name": "Apple iPhone 15 Pro",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/IPhone_15_Pro_Blue_Titanium.svg/512px-IPhone_15_Pro_Blue_Titanium.svg.png",
-    "price": "R 25,999",
-    "links": {
-      "amazon": "https://www.amazon.com/dp/B0CHX9M6K9",
-      "temu": "https://www.temu.com/",
-      "takealot": "https://www.takealot.com/",
-      "ebay": "https://www.ebay.com/",
-      "aliexpress": "https://www.aliexpress.com/"
-    }
-  },
-  {
-    "name": "Samsung 55\" QLED TV",
-    "image": "https://images.samsung.com/is/image/samsung/p6pim/za/qa55q60bauxza/gallery/za-qled-q60b-qa55q60bauxza-frontblack-534045693?$1300_1038_PNG$",
-    "price": "R 14,499",
-    "links": {
-      "amazon": "https://www.amazon.com/",
-      "temu": "https://www.temu.com/",
-      "takealot": "https://www.takealot.com/",
-      "ebay": "https://www.ebay.com/",
-      "aliexpress": "https://www.aliexpress.com/"
-    }
-  },
-  {
-    "name": "Sony WH-1000XM5 Headphones",
-    "image": "https://m.media-amazon.com/images/I/61d9y-3r4jL._AC_SX679_.jpg",
-    "price": "R 6,499",
-    "links": {
-      "amazon": "https://www.amazon.com/",
-      "temu": "https://www.temu.com/",
-      "takealot": "https://www.takealot.com/",
-      "ebay": "https://www.ebay.com/",
-      "aliexpress": "https://www.aliexpress.com/"
-    }
-  },
-  {
-    "name": "DJI Mini 3 Drone",
-    "image": "https://m.media-amazon.com/images/I/61ZPjzDAqRL._AC_SX679_.jpg",
-    "price": "R 8,999",
-    "links": {
-      "amazon": "https://www.amazon.com/",
-      "temu": "https://www.temu.com/",
-      "takealot": "https://www.takealot.com/",
-      "ebay": "https://www.ebay.com/",
-      "aliexpress": "https://www.aliexpress.com/"
-    }
-  },
-  {
-    "name": "Apple iPad Air (5th Gen)",
-    "image": "https://m.media-amazon.com/images/I/61XZQXFQeVL._AC_SX679_.jpg",
-    "price": "R 12,499",
-    "links": {
-      "amazon": "https://www.amazon.com/",
-      "temu": "https://www.temu.com/",
-      "takealot": "https://www.takealot.com/",
-      "ebay": "https://www.ebay.com/",
-      "aliexpress": "https://www.aliexpress.com/"
-    }
-  }
-]
-
+  { "name": "Apple iPhone 15 Pro", "category": "phones", "spec": "A17 Pro, 256GB", "rating": 5, "price": "25999", "image": "https://m.media-amazon.com/images/I/71E5zB1qbIL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "Samsung Galaxy S24", "category": "phones", "spec": "AMOLED 120Hz, 256GB", "rating": 5, "price": "18999", "image": "https://m.media-amazon.com/images/I/61Dw5Z8LzJL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "Lenovo IdeaPad 3 15\"", "category": "laptops", "spec": "i5, 8GB, 512GB SSD", "rating": 4, "price": "10999", "image": "https://m.media-amazon.com/images/I/61r5S6l9QCL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "MacBook Air 13 (M2)", "category": "laptops", "spec": "8GB, 256GB", "rating": 5, "price": "22999", "image": "https://m.media-amazon.com/images/I/71f5Eu5lJSL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "LG OLED C3 55\"", "category": "tvs", "spec": "4K OLED, 120Hz", "rating": 5, "price": "24999", "image": "https://m.media-amazon.com/images/I/81QL3YQdyGL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "Samsung 65\" QLED", "category": "tvs", "spec": "Quantum Dot, HDR10+", "rating": 4, "price": "23999", "image": "https://m.media-amazon.com/images/I/81zE5pXcQNL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "PlayStation 5 (Slim)", "category": "gaming", "spec": "1TB SSD, 4K", "rating": 5, "price": "13999", "image": "https://m.media-amazon.com/images/I/51vELZk9QmL._SL1024_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "Xbox Series X", "category": "gaming", "spec": "1TB SSD, 4K", "rating": 4, "price": "12999", "image": "https://m.media-amazon.com/images/I/71NBQ2a52CL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "Sony WH-1000XM5", "category": "audio", "spec": "ANC, 30h battery", "rating": 5, "price": "8499", "image": "https://m.media-amazon.com/images/I/61d9y-3r4jL._AC_SX679_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "JBL Flip 6 Speaker", "category": "audio", "spec": "Waterproof BT speaker", "rating": 4, "price": "1999", "image": "https://m.media-amazon.com/images/I/61wZ5YdZxvL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "Dell 27\" QHD 144Hz", "category": "monitors", "spec": "IPS, 144Hz", "rating": 5, "price": "5999", "image": "https://m.media-amazon.com/images/I/71yWk1B4dxL._AC_SL1500_.jpg",
+    "links": { "amazon": "https://www.amazon.com/", "takealot": "https://www.takealot.com/", "ebay": "https://www.ebay.com/", "aliexpress": "https://www.aliexpress.com/", "temu": "https://www.temu.com/" } },
+  { "name": "ASUS TUF 24\" 165Hz", "category": "monitors", "spec": "FHD, 165Hz", "rating": 4, "price": "2999", "image": "https://m.media-amazon.com/images/I/81-q
