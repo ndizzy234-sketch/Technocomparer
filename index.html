@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Technocomparer - Compare the Best Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0b0f14;--panel:#111520;--ink:#e9eef2;
+    --neon:#00f7ff;--accent:#a020f0;--muted:#8ea0b3;--line:#1e2430
+  }
+  body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+
+  header{position:sticky;top:0;z-index:10;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:18px 28px;background:#0f131a;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:28px;height:28px;border:2px solid var(--neon);border-radius:6px;box-shadow:0 0 12px var(--neon) inset}
+  h1{font-family:'Orbitron',sans-serif;font-size:20px;color:var(--neon);letter-spacing:0.5px}
+  nav a{margin-left:18px;font-weight:600;position:relative}
+  nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .2s}
+  nav a:hover::after{width:100%}
+
+  .bar{margin:20px auto 0;max-width:720px;padding:0 16px}
+  #search{width:100%;padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:#0d121a;color:var(--ink);font-size:15px;outline:none}
+  #search:focus{box-shadow:0 0 10px var(--accent)}
+
+  .section{padding:24px 16px;max-width:1200px;margin:0 auto}
+  .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:6px}
+  .carousel::-webkit-scrollbar{height:6px}
+  .carousel::-webkit-scrollbar-thumb{background:#2a3142;border-radius:4px}
+
+  .deal{flex:0 0 300px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px}
+  .deal img{width:100%;height:180px;object-fit:cover;border-radius:8px;transition:transform .25s}
+  .deal img:hover{animation:shake .5s}
+  .deal h3{font-family:'Orbitron',sans-serif;color:var(--neon);margin:10px 0 4px}
+  .price{color:var(--ink);opacity:.9}
+  .buy{margin-top:8px;display:inline-block;background:var(--neon);color:#02141a;font-weight:700;border:none;border-radius:8px;padding:10px 12px;cursor:pointer}
+  .buy:hover{background:var(--accent);color:#fff}
+
+  .cats{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .cat{background:var(--panel);border:1px solid var(--line);padding:14px 18px;border-radius:10px;cursor:pointer;transition:box-shadow .2s}
+  .cat:hover{box-shadow:0 0 14px var(--neon)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column}
+  .card:hover{box-shadow:0 0 14px var(--accent)}
+  .card img{width:100%;height:150px;object-fit:cover;border-radius:8px;transition:transform .25s}
+  .card img:hover{animation:shake .5s}
+  .card h4{font-family:'Orbitron',sans-serif;color:var(--neon);margin:10px 0 6px;font-size:16px}
+  .spec{font-size:13px;color:var(--muted);margin-bottom:6px}
+  .stars{color:#f5d442;font-size:14px;margin-bottom:6px}
+  .priceRow{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+  .btn{background:var(--neon);color:#03161a;border:none;border-radius:8px;padding:8px 10px;font-weight:700;cursor:pointer}
+  .btn:hover{background:var(--accent);color:#fff}
+
+  .checkout{padding:80px 16px;text-align:center}
+  .checkout h2{color:var(--neon);margin-bottom:8px}
+  .back{display:inline-block;margin-top:16px;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px}
+
+  footer{text-align:center;padding:28px 16px;border-top:1px solid var(--line);color:var(--muted);margin-top:32px;font-size:14px}
+
+  @keyframes shake{
+    0%{transform:translate(1px,1px) rotate(0)}10%{transform:translate(-1px,-2px) rotate(-1deg)}
+    20%{transform:translate(-3px,0) rotate(1deg)}30%{transform:translate(3px,2px) rotate(0)}
+    40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,2px) rotate(-1deg)}
+    60%{transform:translate(-3px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}
+    80%{transform:translate(-1px,-1px) rotate(1deg)}90%{transform:translate(1px,2px) rotate(0)}
+    100%{transform:translate(1px,-2px) rotate(-1deg)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo"></div>
+    <h1>Technocomparer</h1>
+  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#deals">Deals</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="bar">
+  <input id="search" type="text" placeholder="Search phones, laptops, TVs, drones…">
+</div>
+
+<section class="section" id="deals">
+  <h2 style="font-family:'Orbitron',sans-serif;color:var(--ink);margin-bottom:10px">Featured Deals</h2>
+  <div class="carousel" id="carousel"></div>
+</section>
+
+<section class="section" id="categories">
+  <h2 style="font-family:'Orbitron',sans-serif;color:var(--ink);margin-bottom:10px">Browse Categories</h2>
+  <div class="cats" id="catRow"></div>
+</section>
+
+<section class="section">
+  <div class="grid" id="grid"></div>
+</section>
+
+<footer>
+  Technocomparer.com • As an Amazon Associate we earn from qualifying purchases • © 2025
+</footer>
+
+<script>
+  // Categories
+  const categories = ["Phones","Laptops","TVs","Gaming","Headsets","Monitors","Cameras","Tablets","iPods","Drones","Smartwatches","Home Tech","Routers","PC Components","Audio","Printers"];
+  const catRow = document.getElementById('catRow');
+  categories.forEach(c=>{
+    const el = document.createElement('div');
+    el.className = 'cat';
+    el.dataset.category = c.toLowerCase();
+    el.textContent = c;
+    el.onclick = () => filterCategory(c.toLowerCase());
+    catRow.appendChild(el);
+  });
+
+  // Products (60 demo items)
+  const products = [];
+  const rnd = (min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+  let id=1;
+  categories.forEach(cat=>{
+    const count = 4; // 4 per category (change to 8–10 later)
+    for(let i=0;i<count;i++){
+      products.push({
+        id:id++,
+        name:`${cat} Product ${i+1}`,
+        category:cat.toLowerCase(),
+        price:rnd(999, 29999),
+        rating:rnd(3,5),
+        spec:`${['8GB RAM','4K','144Hz','GPS','Bluetooth 5.3','Wi-Fi 6'][rnd(0,5)]}, ${['256GB','512GB','1TB','NFC','ANC'][rnd(0,4)]}`,
+        img:`https://picsum.photos/seed/${encodeURIComponent(cat+'-'+i)}/600/400`,
+        link:`https://example.com/affiliate/${encodeURIComponent(cat)}-${i+1}?tag=technocomparer-za`
+      });
+    }
+  });
+
+  // Featured carousel = first 8
+  const carousel = document.getElementById('carousel');
+  products.slice(0,8).forEach(p=>{
+    const box=document.createElement('div');
+    box.className='deal';
+    box.innerHTML=`
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <div class="price">R${p.price.toLocaleString('en-ZA')}</div>
+      <button class="buy" onclick="buy('${p.name}')">Buy Now</button>
+    `;
+    carousel.appendChild(box);
+  });
+
+  // Render grid
+  const grid = document.getElementById('grid');
+  function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
+  function render(list){
+    grid.innerHTML='';
+    list.forEach(p=>{
+      const card=document.createElement('div');
+      card.className='card';
+      card.innerHTML=`
+        <img src="${p.img}" alt="${p.name}">
+        <h4>${p.name}</h4>
+        <div class="spec">${p.spec}</div>
+        <div class="stars">${stars(p.rating)}</div>
+        <div class="priceRow">
+          <div>R${p.price.toLocaleString('en-ZA')}</div>
+          <button class="btn" onclick="buy('${p.name}')">Buy Now</button>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+  render(products);
+
+  // Search
+  const search = document.getElementById('search');
+  search.addEventListener('input', ()=>{
+    const q = search.value.toLowerCase();
+    const list = products.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
+    render(list);
+  });
+
+  // Category filter
+  function filterCategory(cat){
+    const list = products.filter(p=>p.category===cat);
+    render(list);
+    // Scroll to grid
+    window.scrollTo({top: document.querySelector('.section:last-of-type').offsetTop - 60, behavior:'smooth'});
+  }
+
+  // Fake checkout
+  function buy(name){
+    grid.innerHTML = `
+      <div class="checkout">
+        <h2>Redirecting to affiliate checkout for <span style="color:var(--neon)">${name}</span>…</h2>
+        <p style="color:var(--muted)">Demo mode: this simulates an external store (Amazon/Takealot).</p>
+        <a class="back" href="#">← Back to home</a>
+      </div>
+    `;
+    document.querySelector('.back').onclick = (e)=>{ e.preventDefault(); render(products); window.scrollTo({top:0,behavior:'smooth'}); };
+  }
+  window.buy = buy; // expose for onclick
+</script>
+</body>
+</html>
