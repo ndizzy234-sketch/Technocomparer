@@ -59,9 +59,31 @@
   .store-btn span{font-size:13px}
   .store-btn strong{font-size:14px}
 
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  /* Reviews grid */
+  .reviews-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;margin-top:10px
+  }
+  .review{background:#0d121a;border:1px solid var(--line);border-radius:10px;padding:12px}
+  .review h4{margin-bottom:6px;color:var(--neon);font-family:'Orbitron',sans-serif}
 
-  footer{text-align:center;padding:28px 16px;border-top:1px solid var(--line);color:var(--muted);margin-top:32px;font-size:14px}
+  /* Footer */
+  footer{text-align:left;padding:28px 16px;border-top:1px solid var(--line);color:var(--muted);margin-top:32px;font-size:14px}
+  .footer-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;max-width:1200px;margin:0 auto 16px
+  }
+  .foot-title{font-family:'Orbitron',sans-serif;color:var(--neon);margin-bottom:8px}
+  .foot-sub{color:var(--muted)}
+  .foot-head{color:var(--ink);margin-bottom:8px}
+  .foot-list{list-style:none}
+  .foot-list li{margin:6px 0}
+  .foot-list a{color:var(--muted)}
+  .foot-list a:hover{color:var(--neon)}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:12px;margin-top:12px;color:var(--muted);text-align:center}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
 
   @keyframes shake{
     0%{transform:translate(1px,1px) rotate(0)}10%{transform:translate(-1px,-2px) rotate(-1deg)}
@@ -84,6 +106,8 @@
     <a href="#top">Home</a>
     <a href="#categories">Categories</a>
     <a href="#deals">Deals</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#cart">Cart</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -107,6 +131,41 @@
   <div class="grid" id="grid"></div>
 </section>
 
+<section class="section" id="reviews">
+  <div class="panel">
+    <h2 style="font-family:'Orbitron',sans-serif;margin-bottom:6px;color:var(--ink)">Reviews</h2>
+    <p style="color:var(--muted);margin-bottom:12px">What shoppers are saying about deals found on Technocomparer.</p>
+    <div class="reviews-grid">
+      <div class="review">
+        <h4>Great TV Deal</h4>
+        <p>“Found the lowest OLED price here—loved the side-by-side store comparison.”</p>
+        <span class="stars">★★★★★</span>
+      </div>
+      <div class="review">
+        <h4>Headset Saved</h4>
+        <p>“Same headset was R400 cheaper on eBay vs Amazon. Thanks!”</p>
+        <span class="stars">★★★★☆</span>
+      </div>
+      <div class="review">
+        <h4>Drone Bargain</h4>
+        <p>“AliExpress beat everyone on my DJI Mini accessories.”</p>
+        <span class="stars">★★★★★</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cart">
+  <div class="panel">
+    <h2 style="font-family:'Orbitron',sans-serif;margin-bottom:6px;color:var(--ink)">Cart</h2>
+    <p style="color:var(--muted)">This site compares prices across stores. Purchases happen on the retailer site (Amazon, Temu, Takealot, eBay, AliExpress). Your cart here is a simple list for convenience.</p>
+    <div id="cartBox" class="panel" style="margin-top:12px">
+      <strong>Cart (demo):</strong>
+      <div id="cartItems" style="margin-top:8px;color:var(--muted)">Your cart is empty.</div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="about">
   <div class="panel">
     <h2 style="font-family:'Orbitron',sans-serif;margin-bottom:6px;color:var(--ink)">About Technocomparer</h2>
@@ -114,15 +173,66 @@
   </div>
 </section>
 
+<section class="section" id="privacy">
+  <div class="panel">
+    <h2 style="font-family:'Orbitron',sans-serif;margin-bottom:6px;color:var(--ink)">Privacy Policy</h2>
+    <p style="color:var(--muted)">We use outbound affiliate links to retailers. We don’t store payment information. By using this site, you agree to outbound tracking via retailer programs. (Replace with your full policy.)</p>
+  </div>
+</section>
+
 <section class="section" id="contact">
   <div class="panel">
     <h2 style="font-family:'Orbitron',sans-serif;margin-bottom:6px;color:var(--ink)">Contact</h2>
+    <!-- EDIT THIS EMAIL ANYTIME -->
     <p style="color:var(--muted)">Questions or partnerships? Email <a href="mailto:hello@technocomparer.com" style="color:var(--neon)">hello@technocomparer.com</a>.</p>
   </div>
 </section>
 
 <footer>
-  Technocomparer.com • As an Amazon Associate we earn from qualifying purchases • © 2025
+  <div class="footer-grid">
+    <div>
+      <h3 class="foot-title">TechnoComparer</h3>
+      <p class="foot-sub">Find the best tech deals and save money with our comprehensive comparisons.</p>
+    </div>
+
+    <div>
+      <h4 class="foot-head">Categories</h4>
+      <ul class="foot-list">
+        <li><a href="#categories">💻 Computers & Accessories</a></li>
+        <li><a href="#categories">📱 Mobile & Tablets</a></li>
+        <li><a href="#categories">📺 Home Entertainment</a></li>
+        <li><a href="#categories">🎮 Gaming & Fun Tech</a></li>
+        <li><a href="#categories">📷 Cameras & Smart Tech</a></li>
+        <li><a href="#categories">🔊 Audio & Music</a></li>
+        <li><a href="#categories">🖨️ Office & Learning</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="foot-head">Company</h4>
+      <ul class="foot-list">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#about">Careers</a></li>
+        <li><a href="#about">Affiliate</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#privacy">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="foot-head">Follow Us</h4>
+      <ul class="foot-list">
+        <li><a href="https://x.com/Technocomparer" target="_blank" rel="noopener">Twitter</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    Technocomparer.com • As an Amazon Associate we earn from qualifying purchases • © 2025
+  </div>
 </footer>
 
 <script>
@@ -171,6 +281,15 @@
     return entries.reduce((a,b)=> a[1] <= b[1] ? a : b); // [key, price]
   }
   function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
+
+  // Demo Cart (local only)
+  const cart = [];
+  function addToCart(name){
+    cart.push(name);
+    const box = document.getElementById('cartItems');
+    if (box) box.textContent = cart.length ? cart.join(', ') : 'Your cart is empty.';
+    location.hash = '#cart';
+  }
 
   async function loadData(){
     try{
@@ -240,6 +359,9 @@
             ${best ? `<span class="badge">Best price: ${ZAR(best[1])}</span>` : `<span class="badge" style="opacity:.75">Compare stores</span>`}
           </div>
           <div class="stores">${storesHtml}</div>
+          <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+            <button class="buy" onclick="addToCart('${p.name}')">Add to Cart (demo)</button>
+          </div>
         `;
         grid.appendChild(card);
       });
