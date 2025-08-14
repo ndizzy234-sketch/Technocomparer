@@ -4,26 +4,29 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Technocomparer - Compare the Best Tech</title>
-<meta name="description" content="Technocomparer is your go-to hub for comparing the latest tech gadgets, from phones and laptops to drones and gaming gear. Explore detailed specs, prices, and reviews, all in one place. Find the best deals instantly and shop smarter with trusted affiliate links to top online retailers worldwide.">
+<meta name="description" content="Technocomparer helps you compare prices on the latest tech across Amazon, Takealot, eBay, AliExpress, Temu and more. See specs, reviews and the best price—then checkout on the retailer via affiliate links.">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{--bg:#0b0f14;--panel:#111520;--ink:#e9eef2;--neon:#00f7ff;--accent:#a020f0;--muted:#8ea0b3;--line:#1e2430;--good:#12c48b;--warn:#f5d442}
   body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
   a{color:inherit;text-decoration:none}
-  header{position:sticky;top:0;z-index:20;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:12px 16px;background:#0f131a;border-bottom:1px solid var(--line)}
+
+  header{position:sticky;top:0;z-index:20;display:flex;gap:16px;align-items:center;justify-content:space-between;padding:12px 16px;background:#0f131a;border-bottom:1px solid var(--line)}
   .brand{display:flex;align-items:center;gap:10px}
   .logo{width:26px;height:26px;border:2px solid var(--neon);border-radius:6px;box-shadow:0 0 12px var(--neon) inset}
   h1{font-family:'Orbitron',sans-serif;font-size:18px;color:var(--neon)}
-  nav a{margin-left:14px;font-weight:600;position:relative}
+  nav a{margin-left:12px;font-weight:600;position:relative}
   nav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .2s}
   nav a:hover::after{width:100%}
   .nav-badges{display:flex;gap:10px;align-items:center}
   .pill{background:#0d121a;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px}
   .pill strong{margin-left:6px}
-  .bar{margin:14px auto 0;max-width:720px;padding:0 16px}
+
+  .bar{margin:14px auto 0;max-width:760px;padding:0 16px}
   #search{width:100%;padding:12px 14px;border-radius:8px;border:1px solid var(--line);background:#0d121a;color:var(--ink);font-size:15px;outline:none}
   #search:focus{box-shadow:0 0 10px var(--accent)}
+
   .section{padding:20px 16px;max-width:1200px;margin:0 auto}
   .carousel{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:6px}
   .carousel::-webkit-scrollbar{height:6px}.carousel::-webkit-scrollbar-thumb{background:#2a3142;border-radius:4px}
@@ -33,9 +36,11 @@
   .deal h3{font-family:'Orbitron',sans-serif;color:var(--neon);margin:10px 0 4px}
   .buy{margin-top:8px;display:inline-block;background:var(--neon);color:#02141a;font-weight:700;border:none;border-radius:8px;padding:10px 12px;cursor:pointer}
   .buy:hover{background:var(--accent);color:#fff}
+
   .cats{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
   .cat{background:var(--panel);border:1px solid var(--line);padding:10px 14px;border-radius:10px;cursor:pointer}
   .cat:hover{box-shadow:0 0 14px var(--neon)}
+
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;position:relative}
   .card:hover{box-shadow:0 0 14px var(--accent)}
@@ -55,11 +60,11 @@
   .btn{background:var(--neon);color:#03161a;border:none;border-radius:8px;padding:8px 10px;font-weight:700;cursor:pointer}
   .btn.alt{background:#0d121a;color:var(--ink);border:1px solid var(--line)}
   .btn:hover{background:var(--accent);color:#fff}
-  /* Reviews */
+
   .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
   .review{background:#0d121a;border:1px solid var(--line);border-radius:10px;padding:12px}
   .review h4{margin-bottom:6px;color:var(--neon);font-family:'Orbitron',sans-serif}
-  /* Footer */
+
   footer{text-align:left;padding:28px 16px;border-top:1px solid var(--line);color:var(--muted);margin-top:32px;font-size:14px}
   .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1200px;margin:0 auto 16px}
   .foot-title{font-family:'Orbitron',sans-serif;color:var(--neon);margin-bottom:8px}
@@ -67,8 +72,17 @@
   .foot-list{list-style:none} .foot-list li{margin:6px 0}
   .foot-list a{color:var(--muted)} .foot-list a:hover{color:var(--neon)}
   .foot-bottom{border-top:1px solid var(--line);padding-top:12px;margin-top:12px;color:var(--muted);text-align:center}
+
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
-  @keyframes shake{0%{transform:translate(1px,1px) rotate(0)}10%{transform:translate(-1px,-2px) rotate(-1deg)}20%{transform:translate(-3px,0) rotate(1deg)}30%{transform:translate(3px,2px) rotate(0)}40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,2px) rotate(-1deg)}60%{transform:translate(-3px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}80%{transform:translate(-1px,-1px) rotate(1deg)}90%{transform:translate(1px,2px) rotate(0)}100%{transform:translate(1px,-2px) rotate(-1deg)}}
+
+  @keyframes shake{
+    0%{transform:translate(1px,1px) rotate(0)}10%{transform:translate(-1px,-2px) rotate(-1deg)}
+    20%{transform:translate(-3px,0) rotate(1deg)}30%{transform:translate(3px,2px) rotate(0)}
+    40%{transform:translate(1px,-1px) rotate(1deg)}50%{transform:translate(-1px,2px) rotate(-1deg)}
+    60%{transform:translate(-3px,1px) rotate(0)}70%{transform:translate(3px,1px) rotate(-1deg)}
+    80%{transform:translate(-1px,-1px) rotate(1deg)}90%{transform:translate(1px,2px) rotate(0)}
+    100%{transform:translate(1px,-2px) rotate(-1deg)}
+  }
 </style>
 </head>
 <body id="top">
@@ -114,7 +128,7 @@
 <section class="section" id="cart">
   <div class="panel">
     <h2 style="font-family:'Orbitron',sans-serif;margin-bottom:6px;color:var(--ink)">Cart</h2>
-    <p style="color:var(--muted)">This site compares prices across stores. Purchases happen on the retailer site. Your cart here is for convenience; click “Checkout” to jump to the retailer with your affiliate link.</p>
+    <p style="color:var(--muted)">This is a comparison cart. Click a store to go to the retailer and finish checkout there.</p>
     <div id="cartBox" class="panel" style="margin-top:12px">
       <strong>Items:</strong>
       <div id="cartItems" style="margin-top:8px;color:var(--muted)">Your cart is empty.</div>
@@ -179,7 +193,7 @@
 </footer>
 
 <script>
-  // ---------- Utilities & Storage ----------
+  // ---------- Helpers & Storage ----------
   const $ = s=>document.querySelector(s);
   const $$ = s=>document.querySelectorAll(s);
   const ZAR = n => 'R'+Number(String(n).replace(/[^\d]/g,'')).toLocaleString('en-ZA');
@@ -187,15 +201,11 @@
     get:(k,def)=>{try{return JSON.parse(localStorage.getItem(k))??def}catch{return def}},
     set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))
   };
-  let CART = LS.get('tc_cart', []);       // [{id,name,store,url,price}]
-  let WISH = LS.get('tc_wish', []);       // [productId]
+  let CART = LS.get('tc_cart', []);        // [{id,name,store,url,price}]
+  let WISH = LS.get('tc_wish', []);        // [id]
+  function updateBadges(){ $('#cartCount').textContent=CART.length; $('#wishCount').textContent=WISH.length; }
 
-  function updateBadges(){
-    $('#cartCount').textContent = CART.length;
-    $('#wishCount').textContent = WISH.length;
-  }
-
-  // ---------- Data loading (supports 2 formats) ----------
+  // ---------- Data normalization (2 formats supported) ----------
   function normalizeData(raw){
     if (raw && !Array.isArray(raw) && raw.products && Array.isArray(raw.products)) return raw;
     if (Array.isArray(raw)) {
@@ -205,114 +215,39 @@
           for(const k of Object.keys(item.links)){ affiliate[k.toLowerCase()] = item.links[k]||'#'; }
         }
         const basePrice = parseInt(String(item.price||'').replace(/[^\d]/g,''),10)||0;
-        const storeKeys = ['amazon','takealot','ebay','aliexpress','temu'];
-        const storePrices={}; storeKeys.forEach(k=> storePrices[k]= affiliate[k]? basePrice:0 );
-        return {
-          id:i+1, name:item.name||`Item ${i+1}`,
-          category:(item.category||'other').toLowerCase(),
-          spec:item.spec||'', rating:item.rating||4,
-          img:item.image||item.img||`https://picsum.photos/seed/${i}/600/400`,
-          storePrices, affiliate
-        };
+        const stores=['amazon','takealot','ebay','aliexpress','temu'];
+        const storePrices={}; stores.forEach(k=> storePrices[k] = affiliate[k]? basePrice:0 );
+        return { id:i+1, name:item.name||`Item ${i+1}`, category:(item.category||'other').toLowerCase(),
+          spec:item.spec||'', rating:item.rating||4, img:item.image||item.img||`https://picsum.photos/seed/${i}/600/400`,
+          storePrices, affiliate };
       });
       const categories = Array.from(new Set(products.map(p=>p.category))).map(c=> c[0].toUpperCase()+c.slice(1));
       return { featuredCount: Math.min(8, products.length), categories, products };
     }
     return { featuredCount:0, categories:[], products:[] };
   }
-
   function bestStore(storePrices){
     const entries = Object.entries(storePrices||{}).filter(([_,p])=>p && p>0);
     if(!entries.length) return null;
-    return entries.reduce((a,b)=> a[1] <= b[1] ? a : b); // [store,price]
+    return entries.reduce((a,b)=> a[1] <= b[1] ? a : b); // [store, price]
   }
-
-  // ---------- Render ----------
   function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
 
-  function renderProducts(list){
-    const grid = $('#grid'); grid.innerHTML='';
-    list.forEach(p=>{
-      const best = bestStore(p.storePrices||{});
-      const card = document.createElement('div'); card.className='card';
-      const loved = WISH.includes(p.id)? 'active':'';
-      const storesHtml = Object.entries(p.storePrices||{}).map(([store,price])=>{
-        if(!price) return '';
-        const url = p.affiliate?.[store] || '#';
-        const label = store[0].toUpperCase()+store.slice(1);
-        return `<button class="store-btn" data-store="${store}" data-url="${url}" data-price="${price}" data-id="${p.id}">
-                  <span>${label}</span><strong>${ZAR(price)}</strong>
-                </button>`;
-      }).join('');
-
-      card.innerHTML = `
-        <button class="heart ${loved}" data-id="${p.id}" aria-label="Save to wishlist">❤</button>
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
-        <h4>${p.name}</h4>
-        <div class="spec">${p.spec||''}</div>
-        <div class="stars">${stars(p.rating||4)}</div>
-        <div class="priceRow">${best? `<span class="badge">Best price: ${ZAR(best[1])}</span>` : `<span class="badge" style="opacity:.75">Compare stores</span>`}</div>
-        <div class="stores">${storesHtml}</div>
-        <div class="actions">
-          <button class="btn alt add-best" data-id="${p.id}">Add Best Deal to Cart</button>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-
-    // Wire store buttons: add to cart, then jump to cart
-    grid.querySelectorAll('.store-btn').forEach(b=>{
-      b.addEventListener('click', e=>{
-        const id = Number(b.dataset.id);
-        const store = b.dataset.store;
-        const url = b.dataset.url;
-        const price = Number(b.dataset.price);
-        const prod = CURRENT_PRODUCTS.find(x=>x.id===id);
-        addToCart({id:prod.id,name:prod.name,store,url,price});
-        location.hash = '#cart';
-        renderCart();
-      });
-    });
-
-    // Wire "Add Best Deal to Cart"
-    grid.querySelectorAll('.add-best').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = Number(btn.dataset.id);
-        const p = CURRENT_PRODUCTS.find(x=>x.id===id);
-        const best = bestStore(p.storePrices||{});
-        if(!best){alert('No store available for this item yet.');return;}
-        const [store, price] = best;
-        const url = p.affiliate?.[store] || '#';
-        addToCart({id:p.id,name:p.name,store,url,price});
-        location.hash = '#cart';
-        renderCart();
-      });
-    });
-
-    // Wire hearts (wishlist)
-    grid.querySelectorAll('.heart').forEach(h=>{
-      h.addEventListener('click', ()=>{
-        const id = Number(h.dataset.id);
-        if(WISH.includes(id)){ WISH = WISH.filter(x=>x!==id); h.classList.remove('active'); }
-        else { WISH.push(id); h.classList.add('active'); }
-        LS.set('tc_wish', WISH); updateBadges();
-      });
-    });
-  }
+  // ---------- Renderers ----------
+  let CURRENT_PRODUCTS=[]; let FEATURED=8;
 
   function renderCategories(cats){
     const row = $('#catRow'); row.innerHTML='';
-    cats.forEach(c=>{
-      const el = document.createElement('div');
-      el.className='cat'; el.dataset.category = c.toLowerCase();
-      el.textContent = c; el.onclick = ()=> filterCategory(c.toLowerCase());
+    (cats||[]).forEach(c=>{
+      const el = document.createElement('div'); el.className='cat';
+      el.dataset.category = c.toLowerCase(); el.textContent = c;
+      el.onclick = ()=> filterCategory(c.toLowerCase());
       row.appendChild(el);
     });
   }
-
   function renderCarousel(list){
     const car = $('#carousel'); car.innerHTML='';
-    list.slice(0,FEATURED).forEach(p=>{
+    (list||[]).slice(0,FEATURED).forEach(p=>{
       const b = bestStore(p.storePrices||{});
       const box = document.createElement('div'); box.className='deal';
       box.innerHTML = `<img src="${p.img}" alt="${p.name}" loading="lazy"><h3>${p.name}</h3>
@@ -321,14 +256,70 @@
       car.appendChild(box);
     });
   }
+  function renderProducts(list){
+    const grid = $('#grid'); grid.innerHTML='';
+    (list||[]).forEach(p=>{
+      const best = bestStore(p.storePrices||{});
+      const loved = WISH.includes(p.id)? 'active':'';
+      const storesHtml = Object.entries(p.storePrices||{}).map(([store,price])=>{
+        if(!price) return '';
+        const url = p.affiliate?.[store] || '#';
+        const label = store[0].toUpperCase()+store.slice(1);
+        return `<a class="store-btn" href="${url}" target="_blank" rel="noopener" data-id="${p.id}" data-store="${store}" data-price="${price}">
+                  <span>${label}</span><strong>${ZAR(price)}</strong>
+                </a>`;
+      }).join('');
+      const card = document.createElement('div'); card.className='card';
+      card.innerHTML = `
+        <button class="heart ${loved}" data-id="${p.id}" aria-label="Save to wishlist">❤</button>
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        <h4>${p.name}</h4>
+        <div class="spec">${p.spec||''}</div>
+        <div class="stars">${stars(p.rating||4)}</div>
+        <div class="priceRow">${best? `<span class="badge">Best price: ${ZAR(best[1])}</span>` : `<span class="badge" style="opacity:.75">Compare stores</span>`}</div>
+        <div class="stores">${storesHtml}</div>
+        <div class="actions"><button class="btn alt add-best" data-id="${p.id}">Add Best Deal to Cart</button></div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // hearts
+    grid.querySelectorAll('.heart').forEach(h=>{
+      h.addEventListener('click', ()=>{
+        const id = Number(h.dataset.id);
+        if(WISH.includes(id)){ WISH = WISH.filter(x=>x!==id); h.classList.remove('active'); }
+        else { WISH.push(id); h.classList.add('active'); }
+        LS.set('tc_wish', WISH); updateBadges();
+      });
+    });
+
+    // “Add Best Deal”
+    grid.querySelectorAll('.add-best').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = Number(btn.dataset.id);
+        const p = CURRENT_PRODUCTS.find(x=>x.id===id);
+        const best = bestStore(p.storePrices||{});
+        if(!best){alert('No store available for this item yet.');return;}
+        const [store, price] = best; const url = p.affiliate?.[store] || '#';
+        addToCart({id:p.id,name:p.name,store,url,price});
+        location.hash = '#cart'; renderCart();
+      });
+    });
+
+    // store buttons: add to cart THEN open store in new tab (direct checkout path)
+    grid.querySelectorAll('.store-btn').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = Number(a.dataset.id), store=a.dataset.store, price=Number(a.dataset.price), url=a.getAttribute('href');
+        const p = CURRENT_PRODUCTS.find(x=>x.id===id);
+        addToCart({id:p.id,name:p.name,store,url,price});
+        updateBadges(); // browser will open the store link in a new tab
+      });
+    });
+  }
 
   // ---------- Cart ----------
-  function addToCart(item){ // {id,name,store,url,price}
-    CART.push(item); LS.set('tc_cart', CART); updateBadges();
-  }
-  function removeFromCart(idx){
-    CART.splice(idx,1); LS.set('tc_cart', CART); updateBadges(); renderCart();
-  }
+  function addToCart(item){ CART.push(item); LS.set('tc_cart', CART); updateBadges(); }
+  function removeFromCart(idx){ CART.splice(idx,1); LS.set('tc_cart', CART); updateBadges(); renderCart(); }
   function renderCart(){
     const box = $('#cartItems');
     if(!CART.length){ box.textContent='Your cart is empty.'; return; }
@@ -342,9 +333,9 @@
       </div>
     `).join('');
   }
+  window.removeFromCart = removeFromCart;
 
-  // ---------- Search & Filters ----------
-  let CURRENT_PRODUCTS = []; let FEATURED = 8;
+  // ---------- Filters & Search ----------
   function filterCategory(cat){
     const list = CURRENT_PRODUCTS.filter(p=>p.category===cat);
     renderProducts(list.length? list : CURRENT_PRODUCTS);
@@ -352,10 +343,13 @@
   }
   function scrollToGrid(name){
     window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
-    const list = CURRENT_PRODUCTS.filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
+    const q = name.toLowerCase();
+    const list = CURRENT_PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || (p.category||'').includes(q));
     renderProducts(list.length? list : CURRENT_PRODUCTS);
   }
 
+  // ---------- Boot ----------
+  let FEATURED=8;
   async function load(){
     try{
       const res = await fetch('products.json',{cache:'no-store'});
@@ -367,31 +361,21 @@
       renderCarousel(CURRENT_PRODUCTS);
       renderProducts(CURRENT_PRODUCTS);
       renderCart();
-      // Footer category links -> filter
+      // Footer category quick filter
       $$('.foot-list a[data-cat]').forEach(a=>{
-        a.addEventListener('click', (e)=>{
+        a.addEventListener('click', ()=>{
           const cat = a.dataset.cat.toLowerCase();
-          setTimeout(()=>filterCategory(cat), 0);
+          setTimeout(()=>filterCategory(cat),0);
         });
       });
     }catch(e){
       $('#grid').innerHTML=`<div class="panel" style="grid-column:1/-1">⚠️ Could not load products.json (${e.message})</div>`;
     }
   }
-
-  // Search behavior (Enter scrolls to results)
   const search = $('#search');
-  search.addEventListener('input', ()=>{
-    const q = search.value.toLowerCase();
-    const list = CURRENT_PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || (p.category||'').includes(q));
-    renderProducts(list.length? list : CURRENT_PRODUCTS);
-  });
-  search.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ scrollToGrid(search.value); } });
+  search.addEventListener('input', ()=>scrollToGrid(search.value));
+  search.addEventListener('keydown', e=>{ if(e.key==='Enter') scrollToGrid(search.value) });
 
-  // Expose cart funcs
-  window.removeFromCart = removeFromCart;
-
-  // Init
   updateBadges(); load();
 </script>
 </body>
