@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Apple iPhone 15 Pro Max",
+    "category": "Phones",
+    "spec": "6.7-inch OLED, A17 Pro Chip, 256GB",
+    "rating": 5,
+    "price": "28999",
+    "image": "https://m.media-amazon.com/images/I/71E5zB1qbIL._AC_SL1500_.jpg",
+    "links": {
+      "Amazon": "https://www.amazon.com/dp/example-iphone",
+      "Takealot": "https://www.takealot.com/example-iphone",
+      "eBay": "https://www.ebay.com/itm/example-iphone",
+      "AliExpress": "https://www.aliexpress.com/item/example-iphone",
+      "Temu": "https://www.temu.com/example-iphone"
+    }
+  },
+  {
+    "name": "Samsung 65\" QLED 4K TV",
+    "category": "TVs",
+    "spec": "Quantum Dot, HDR10+, 120Hz",
+    "rating": 4,
+    "price": "23999",
+    "image": "https://m.media-amazon.com/images/I/81zE5pXcQNL._AC_SL1500_.jpg",
+    "links": {
+      "Amazon": "https://www.amazon.com/dp/example-tv",
+      "Takealot": "https://www.takealot.com/example-tv",
+      "eBay": "https://www.ebay.com/itm/example-tv",
+      "AliExpress": "https://www.aliexpress.com/item/example-tv",
+      "Temu": "https://www.temu.com/example-tv"
+    }
+  },
+  {
+    "name": "Sony WH-1000XM5 Headphones",
+    "category": "Headsets",
+    "spec": "Noise Cancelling, Wireless, 30hr Battery",
+    "rating": 5,
+    "price": "8499",
+    "image": "https://m.media-amazon.com/images/I/61+KwfZz-+L._AC_SL1500_.jpg",
+    "links": {
+      "Amazon": "https://www.amazon.com/dp/example-sony",
+      "Takealot": "https://www.takealot.com/example-sony",
+      "eBay": "https://www.ebay.com/itm/example-sony",
+      "AliExpress": "https://www.aliexpress.com/item/example-sony",
+      "Temu": "https://www.temu.com/example-sony"
+    }
+  },
+  {
+    "name": "DJI Mini 4 Pro Drone",
+    "category": "Drones",
+    "spec": "4K HDR Video, 34-min Flight, GPS",
+    "rating": 4,
+    "price": "16999",
+    "image": "https://m.media-amazon.com/images/I/71LrXTz8b7L._AC_SL1500_.jpg",
+    "links": {
+      "Amazon": "https://www.amazon.com/dp/example-drone",
+      "Takealot": "https://www.takealot.com/example-drone",
+      "eBay": "https://www.ebay.com/itm/example-drone",
+      "AliExpress": "https://www.aliexpress.com/item/example-drone",
+      "Temu": "https://www.temu.com/example-drone"
+    }
+  },
+  {
+    "name": "Apple iPad Pro 12.9\"",
+    "category": "Tablets",
+    "spec": "M2 Chip, 256GB, Wi-Fi + Cellular",
+    "rating": 5,
+    "price": "24999",
+    "image": "https://m.media-amazon.com/images/I/81gC7frRJyL._AC_SL1500_.jpg",
+    "links": {
+      "Amazon": "https://www.amazon.com/dp/example-ipad",
+      "Takealot": "https://www.takealot.com/example-ipad",
+      "eBay": "https://www.ebay.com/itm/example-ipad",
+      "AliExpress": "https://www.aliexpress.com/item/example-ipad",
+      "Temu": "https://www.temu.com/example-ipad"
+    }
+  }
+]
