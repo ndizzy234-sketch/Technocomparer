@@ -131,202 +131,159 @@
 </footer>
 
 <script>
-  // -------------------------------
-  // Categories
-  // -------------------------------
-  const categories = ["Phones","Laptops","TVs","Gaming","Headsets","Monitors","Cameras","Tablets","iPods","Drones","Smartwatches","Home Tech"];
-  const catRow = document.getElementById('catRow');
-  categories.forEach(c=>{
-    const el = document.createElement('div');
-    el.className = 'cat';
-    el.dataset.category = c.toLowerCase();
-    el.textContent = c;
-    el.onclick = () => filterCategory(c.toLowerCase());
-    catRow.appendChild(el);
-  });
-
-  // -------------------------------
-  // Product data
-  // - Each product has per-store prices + affiliate links
-  // - Replace the placeholder URLs with your real affiliate links
-  //   Example: affiliate.amazon = "https://www.amazon.com/...&tag=YOURTAG-20"
-  // -------------------------------
-  const demoImg = (seed) => `https://picsum.photos/seed/${encodeURIComponent(seed)}/600/400`;
-
-  const products = [
-    {
-      id:1, name:"Galaxy S24", category:"phones", spec:"8GB RAM, 256GB, AMOLED 120Hz", rating:5,
-      storePrices:{ amazon:18999, takealot:19499, ebay:18750, aliexpress:18399, temu:0 },
-      affiliate:{
-        amazon:"#AMAZON_GALAXY_S24",
-        takealot:"#TAKEALOT_GALAXY_S24",
-        ebay:"#EBAY_GALAXY_S24",
-        aliexpress:"#ALIEXPRESS_GALAXY_S24",
-        temu:"#"
-      },
-      img:demoImg("Galaxy S24")
-    },
-    {
-      id:2, name:"iPhone 15", category:"phones", spec:"6GB RAM, 128GB, Super Retina", rating:4,
-      storePrices:{ amazon:21999, takealot:0, ebay:21499, aliexpress:0, temu:20999 },
-      affiliate:{
-        amazon:"#AMAZON_IPHONE_15",
-        takealot:"#",
-        ebay:"#EBAY_IPHONE_15",
-        aliexpress:"#",
-        temu:"#TEMU_IPHONE_15"
-      },
-      img:demoImg("iPhone 15")
-    },
-    {
-      id:3, name:"PlayStation 5", category:"gaming", spec:"1TB, 4K, DualSense", rating:5,
-      storePrices:{ amazon:13999, takealot:14299, ebay:0, aliexpress:0, temu:13799 },
-      affiliate:{
-        amazon:"#AMAZON_PS5",
-        takealot:"#TAKEALOT_PS5",
-        ebay:"#",
-        aliexpress:"#",
-        temu:"#TEMU_PS5"
-      },
-      img:demoImg("PlayStation 5")
-    },
-    {
-      id:4, name:"LG OLED TV 55\"", category:"tvs", spec:"4K HDR, OLED, 120Hz", rating:5,
-      storePrices:{ amazon:24999, takealot:0, ebay:24500, aliexpress:23899, temu:0 },
-      affiliate:{
-        amazon:"#AMAZON_LG_OLED",
-        takealot:"#",
-        ebay:"#EBAY_LG_OLED",
-        aliexpress:"#ALIEXPRESS_LG_OLED",
-        temu:"#"
-      },
-      img:demoImg("LG OLED")
-    }
-  ];
-
-  // Add a few auto-generated examples per other categories
-  const moreCats = ["Headsets","Monitors","Cameras","Tablets","Drones","Smartwatches","Home Tech","Laptops"];
-  let id = products.length+1;
-  moreCats.forEach(cat=>{
-    for(let i=1;i<=3;i++){
-      const slug = (cat+' '+i);
-      products.push({
-        id:id++,
-        name:`${cat} Product ${i}`,
-        category:cat.toLowerCase().replace(' ',''),
-        spec:"Feature pack, Wi-Fi 6, USB-C",
-        rating: Math.floor(Math.random()*2)+4,
-        storePrices:{
-          amazon: Math.floor(Math.random()*8000)+1999,
-          takealot: Math.floor(Math.random()*8000)+1999,
-          ebay: Math.floor(Math.random()*8000)+1999,
-          aliexpress: Math.floor(Math.random()*8000)+1999,
-          temu: Math.floor(Math.random()*8000)+1999
-        },
-        affiliate:{
-          amazon:"#AMAZON_"+slug.toUpperCase().replace(/\s+/g,'_'),
-          takealot:"#TAKEALOT_"+slug.toUpperCase().replace(/\s+/g,'_'),
-          ebay:"#EBAY_"+slug.toUpperCase().replace(/\s+/g,'_'),
-          aliexpress:"#ALIEXPRESS_"+slug.toUpperCase().replace(/\s+/g,'_'),
-          temu:"#TEMU_"+slug.toUpperCase().replace(/\s+/g,'_')
-        },
-        img:demoImg(slug)
-      });
-    }
-  });
-
-  // -------------------------------
-  // Helpers
-  // -------------------------------
   const ZAR = (n)=>'R'+Number(n).toLocaleString('en-ZA');
 
+  // Normalize ANY products.json format into the expected shape:
+  // Expected shape:
+  // { featuredCount, categories:[...], products:[{ name, category, img, spec, rating, storePrices:{amazon:..., ...}, affiliate:{amazon:"...", ...} }] }
+  function normalizeData(raw){
+    // If it already looks like the expected object, return as-is
+    if (raw && !Array.isArray(raw) && raw.products && Array.isArray(raw.products)) {
+      return raw;
+    }
+    // If it's an ARRAY (simple items with name/image/price/links)
+    if (Array.isArray(raw)) {
+      const products = raw.map((item, i) => {
+        const affiliate = {};
+        if (item.links && typeof item.links === 'object') {
+          for (const k of Object.keys(item.links)) {
+            affiliate[k.toLowerCase().replace(/\s+/g,'')] = item.links[k] || '#';
+          }
+        }
+        // Parse a single "price" like "$999" or "999"
+        const basePrice = parseInt(String(item.price||'').replace(/[^\d]/g,''), 10) || 0;
+        // Build per-store prices: if a store link exists, give it the base price; else 0 (hidden)
+        const storeKeys = ['amazon','takealot','ebay','aliexpress','temu'];
+        const storePrices = {};
+        storeKeys.forEach(k=>{
+          storePrices[k] = affiliate[k] ? basePrice : 0;
+        });
+
+        return {
+          id: i+1,
+          name: item.name || `Item ${i+1}`,
+          category: (item.category || 'other').toLowerCase(),
+          spec: item.spec || '',
+          rating: item.rating || 4,
+          img: item.image || item.img || `https://picsum.photos/seed/${i}/600/400`,
+          storePrices,
+          affiliate
+        };
+      });
+      const categories = Array.from(new Set(products.map(p=>p.category))).map(c=> c.charAt(0).toUpperCase()+c.slice(1));
+      return { featuredCount: Math.min(8, products.length), categories, products };
+    }
+    // Fallback: nothing usable
+    return { featuredCount: 0, categories: [], products: [] };
+  }
+
   function bestStore(storePrices){
-    // Returns {key, price} with lowest non-zero price
     const entries = Object.entries(storePrices).filter(([_,p])=>p && p>0);
     if(!entries.length) return null;
-    return entries.reduce((a,b)=> a[1] <= b[1] ? a : b);
+    return entries.reduce((a,b)=> a[1] <= b[1] ? a : b); // [key, price]
   }
-
-  // -------------------------------
-  // Featured carousel (first 8)
-  // -------------------------------
-  const carousel = document.getElementById('carousel');
-  products.slice(0,8).forEach(p=>{
-    const [k,low] = bestStore(p.storePrices) || [null,null];
-    const box=document.createElement('div');
-    box.className='deal';
-    box.innerHTML=`
-      <img src="${p.img}" alt="${p.name}">
-      <h3>${p.name}</h3>
-      <div class="price">${low? `${ZAR(low)} <span class="badge">Best price</span>` : 'See stores'}</div>
-      <button class="buy" onclick="scrollToGrid('${p.name}')">Compare Prices</button>
-    `;
-    carousel.appendChild(box);
-  });
-
-  // -------------------------------
-  // Product grid
-  // -------------------------------
-  const grid = document.getElementById('grid');
   function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n)}
-  function render(list){
-    grid.innerHTML='';
-    list.forEach(p=>{
-      const best = bestStore(p.storePrices);
-      const storesHtml = Object.entries(p.storePrices).map(([store,price])=>{
-        if(!price) return ''; // skip if 0 / not available
-        const url = p.affiliate[store] || '#';
-        const label = (store.charAt(0).toUpperCase()+store.slice(1));
-        const badge = (best && store===best[0]) ? `<span class="badge">Best price</span>` : '';
-        return `<a class="store-btn" href="${url}" target="_blank" rel="noopener">
-                  <span>${label}</span>
-                  <strong>${ZAR(price)}</strong>
-                </a>${badge ? '' : ''}`;
-      }).join('');
 
-      const card=document.createElement('div');
-      card.className='card';
-      card.innerHTML=`
-        <img src="${p.img}" alt="${p.name}">
-        <h4>${p.name}</h4>
-        <div class="spec">${p.spec}</div>
-        <div class="stars">${stars(p.rating)}</div>
-        <div class="priceRow">
-          ${best ? `<span class="badge">Best price: ${ZAR(best[1])}</span>` : `<span class="badge" style="opacity:.75">Compare stores</span>`}
-        </div>
-        <div class="stores">
-          ${storesHtml}
-        </div>
-      `;
-      grid.appendChild(card);
+  async function loadData(){
+    try{
+      const res = await fetch('products.json', {cache:'no-store'});
+      if(!res.ok) throw new Error('Failed to load products.json');
+      const raw = await res.json();
+      const data = normalizeData(raw);
+      initSite(data);
+    }catch(e){
+      document.getElementById('grid').innerHTML =
+        `<div class="panel" style="grid-column:1/-1">⚠️ Could not load products.json. Error: ${e.message}</div>`;
+    }
+  }
+
+  function initSite({categories, products, featuredCount=8}){
+    // Categories UI
+    const catRow = document.getElementById('catRow');
+    catRow.innerHTML = '';
+    (categories||[]).forEach(c=>{
+      const el = document.createElement('div');
+      el.className='cat';
+      el.dataset.category = c.toLowerCase();
+      el.textContent = c;
+      el.onclick = ()=> filterCategory(c.toLowerCase());
+      catRow.appendChild(el);
     });
-  }
-  render(products);
 
-  // -------------------------------
-  // Search + Category filter
-  // -------------------------------
-  const search = document.getElementById('search');
-  search.addEventListener('input', ()=>{
-    const q = search.value.toLowerCase();
-    const list = products.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
-    render(list);
-  });
+    // Featured carousel
+    const carousel = document.getElementById('carousel');
+    carousel.innerHTML = '';
+    (products||[]).slice(0,featuredCount).forEach(p=>{
+      const b = bestStore(p.storePrices||{});
+      const box = document.createElement('div');
+      box.className='deal';
+      box.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <div class="price">${b? `${ZAR(b[1])} <span class="badge">Best price</span>` : 'See stores'}</div>
+        <button class="buy" onclick="scrollToGrid('${p.name}')">Compare Prices</button>
+      `;
+      carousel.appendChild(box);
+    });
 
-  function filterCategory(cat){
-    const list = products.filter(p=>p.category===cat);
-    render(list);
-    window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
+    // Products grid
+    const grid = document.getElementById('grid');
+    function render(list){
+      grid.innerHTML='';
+      list.forEach(p=>{
+        const best = bestStore(p.storePrices||{});
+        const storesHtml = Object.entries(p.storePrices||{}).map(([store,price])=>{
+          if(!price) return '';
+          const url = p.affiliate?.[store] || '#';
+          const label = store.charAt(0).toUpperCase()+store.slice(1);
+          return `<a class="store-btn" href="${url}" target="_blank" rel="noopener">
+                    <span>${label}</span><strong>${ZAR(price)}</strong>
+                  </a>`;
+        }).join('');
+
+        const card = document.createElement('div');
+        card.className='card';
+        card.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h4>${p.name}</h4>
+          <div class="spec">${p.spec||''}</div>
+          <div class="stars">${stars(p.rating||4)}</div>
+          <div class="priceRow">
+            ${best ? `<span class="badge">Best price: ${ZAR(best[1])}</span>` : `<span class="badge" style="opacity:.75">Compare stores</span>`}
+          </div>
+          <div class="stores">${storesHtml}</div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Search + filters
+    const search = document.getElementById('search');
+    search.oninput = ()=>{
+      const q = search.value.toLowerCase();
+      const list = (products||[]).filter(p => p.name.toLowerCase().includes(q) || (p.category||'').includes(q));
+      render(list);
+    };
+
+    window.filterCategory = (cat)=>{
+      const list = (products||[]).filter(p=>p.category===cat);
+      render(list.length ? list : (products||[]));
+      window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
+    };
+
+    window.scrollToGrid = (name)=>{
+      window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
+      const list = (products||[]).filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
+      render(list.length? list : (products||[]));
+    };
+
+    // Initial render
+    render(products||[]);
   }
 
-  function scrollToGrid(name){
-    window.scrollTo({top: document.querySelector('.section:nth-of-type(3)').offsetTop - 60, behavior:'smooth'});
-    // Optional: auto-filter by product name
-    search.value = name;
-    const list = products.filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
-    render(list.length? list : products);
-  }
+  loadData();
 </script>
+
 
 </body>
 </html>
