@@ -1,0 +1,63 @@
+[
+  {
+    "name": "Apple iPhone 15 Pro",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/IPhone_15_Pro_Blue_Titanium.svg/512px-IPhone_15_Pro_Blue_Titanium.svg.png",
+    "price": "R 25,999",
+    "links": {
+      "amazon": "https://www.amazon.com/dp/B0CHX9M6K9",
+      "temu": "https://www.temu.com/",
+      "takealot": "https://www.takealot.com/",
+      "ebay": "https://www.ebay.com/",
+      "aliexpress": "https://www.aliexpress.com/"
+    }
+  },
+  {
+    "name": "Samsung 55\" QLED TV",
+    "image": "https://images.samsung.com/is/image/samsung/p6pim/za/qa55q60bauxza/gallery/za-qled-q60b-qa55q60bauxza-frontblack-534045693?$1300_1038_PNG$",
+    "price": "R 14,499",
+    "links": {
+      "amazon": "https://www.amazon.com/",
+      "temu": "https://www.temu.com/",
+      "takealot": "https://www.takealot.com/",
+      "ebay": "https://www.ebay.com/",
+      "aliexpress": "https://www.aliexpress.com/"
+    }
+  },
+  {
+    "name": "Sony WH-1000XM5 Headphones",
+    "image": "https://m.media-amazon.com/images/I/61d9y-3r4jL._AC_SX679_.jpg",
+    "price": "R 6,499",
+    "links": {
+      "amazon": "https://www.amazon.com/",
+      "temu": "https://www.temu.com/",
+      "takealot": "https://www.takealot.com/",
+      "ebay": "https://www.ebay.com/",
+      "aliexpress": "https://www.aliexpress.com/"
+    }
+  },
+  {
+    "name": "DJI Mini 3 Drone",
+    "image": "https://m.media-amazon.com/images/I/61ZPjzDAqRL._AC_SX679_.jpg",
+    "price": "R 8,999",
+    "links": {
+      "amazon": "https://www.amazon.com/",
+      "temu": "https://www.temu.com/",
+      "takealot": "https://www.takealot.com/",
+      "ebay": "https://www.ebay.com/",
+      "aliexpress": "https://www.aliexpress.com/"
+    }
+  },
+  {
+    "name": "Apple iPad Air (5th Gen)",
+    "image": "https://m.media-amazon.com/images/I/61XZQXFQeVL._AC_SX679_.jpg",
+    "price": "R 12,499",
+    "links": {
+      "amazon": "https://www.amazon.com/",
+      "temu": "https://www.temu.com/",
+      "takealot": "https://www.takealot.com/",
+      "ebay": "https://www.ebay.com/",
+      "aliexpress": "https://www.aliexpress.com/"
+    }
+  }
+]
+
